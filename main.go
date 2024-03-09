@@ -6,8 +6,8 @@ import (
 	"log"
 	"net/http"
 	"runtime/debug"
-	"github.com/gorilla/mux"
 
+	"github.com/gorilla/mux"
 )
 
 // CustomError is a custom error type
@@ -25,43 +25,40 @@ type Response struct {
 	Message string `json:"message"`
 }
 
+//dd:span
+func apiHandler(w http.ResponseWriter, r *http.Request) {
+
+	// Set the content type to JSON
+	w.Header().Set("Content-Type", "application/json")
+
+	// Create a Response struct
+	response := Response{Message: "Hello, this is a simple GET API!"}
+	log.Println("Simple get API Success!!")
+
+	// Encode the Response struct to JSON and write it to the response writer
+	json.NewEncoder(w).Encode(response)
+}
+
+//dd:span
+func getErrorRequestHandler(w http.ResponseWriter, r *http.Request) {
+
+	// Set the content type to JSON
+	w.Header().Set("Content-Type", "application/json")
+
+	// Return a custom error
+	customError := &CustomError{Message: "Custom Error: Something went wrong"}
+	w.WriteHeader(http.StatusInternalServerError)
+
+	// Log the error message
+	log.Printf("Error Request API triggered with message: %s\n", customError.Message)
+	debug.PrintStack() // Capture and print the stack trace
+
+	// Encode the custom error message to JSON and write it to the response writer
+	json.NewEncoder(w).Encode(Response{Message: customError.Message})
+}
+
 func main() {
-
-	// Create a new router using gorilla/mux
 	router := mux.NewRouter()
-
-	// Define a handler function for the API endpoint
-	apiHandler := func(w http.ResponseWriter, r *http.Request) {
-
-		// Set the content type to JSON
-		w.Header().Set("Content-Type", "application/json")
-
-		// Create a Response struct
-		response := Response{Message: "Hello, this is a simple GET API!"}
-		log.Println("Simple get API Success!!")
-
-		// Encode the Response struct to JSON and write it to the response writer
-		json.NewEncoder(w).Encode(response)
-	}
-
-	// Define a handler function for the /getErrorRequest endpoint
-	getErrorRequestHandler := func(w http.ResponseWriter, r *http.Request) {
-		// Start a trace span for this handler
-
-		// Set the content type to JSON
-		w.Header().Set("Content-Type", "application/json")
-
-		// Return a custom error
-		customError := &CustomError{Message: "Custom Error: Something went wrong"}
-		w.WriteHeader(http.StatusInternalServerError)
-
-		// Log the error message
-		log.Printf("Error Request API triggered with message: %s\n", customError.Message)
-		debug.PrintStack() // Capture and print the stack trace
-
-		// Encode the custom error message to JSON and write it to the response writer
-		json.NewEncoder(w).Encode(Response{Message: customError.Message})
-	}
 
 	// Register the API handler function for the "/api" route using gorilla/mux
 	router.HandleFunc("/api", apiHandler).Methods("GET")
