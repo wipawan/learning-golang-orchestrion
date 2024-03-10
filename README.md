@@ -29,7 +29,9 @@
 git clone https://github.com/jon94/learning-golang-orchestrion.git
 ```
 2. Replace the Datadog API Key in docker-compose.yaml
-3. Set ENV Variable DD_SITE if required (depending on your data centre with Datadog)
+![image](https://github.com/jon94/learning-golang-orchestrion/assets/40360784/ec42f1fb-bcc6-4e23-bfeb-11fcf7eb4b86)
+3. Set ENV Variable [DD_SITE](https://docs.datadoghq.com/agent/troubleshooting/site/) if required (depending on your data centre with Datadog)
+![image](https://github.com/jon94/learning-golang-orchestrion/assets/40360784/44a0c8fe-29cf-473a-98a5-441a03737e31)
 4. Run docker compose
 ```
 docker compose up -d --force-recreate --no-deps --build
