@@ -49,6 +49,7 @@ Depending on how your Golang code is structured. You might need to use a combina
 <summary>Example Code Block</summary>
 
 - In this case, apiHandler and getRequestHandler functions are not written outside the func main() block. They are written as inline functions inside func main(). Orchestrion is not yet able to catch those.
+- We therefore, created 2 manual spans for the 2 functions.
   
 ```Go
 package main
