@@ -14,14 +14,14 @@
 
 ## Inspect main.go
 - The outcome of the orchestrion instrumentation is that it should have 3 spans in the flamegraph. 
-- All we did was to annotate //dd:span my:tag on func GetSomeData. This helps us achieve the instrumentation for that function.
-- Since we are using the net/http library that orchestrion supports for automatic instrumentation, we do not need to annotate those.
+- All we did was to annotate //dd:span my:tag on func apiHandler and getRequestHandler. This helps us achieve the instrumentation for that function.
+- Since we are using the net/http and gorilla/mux library that orchestrion supports for [automatic instrumentation](https://github.com/DataDog/orchestrion?tab=readme-ov-file#supported-libraries), we do not need to annotate those.
 
 ## Inspect afterorchestrion.go.example
 - This is how the main.go file will look like after orchestrion ["automagically"](https://github.com/DataDog/orchestrion?tab=readme-ov-file#how-it-works) instruments your code.
 
 ## How it looks like in Datadog APM FlameGraph after orchestrion
-![image](https://github.com/jon94/orchestrion-golang-container/assets/40360784/3444c5e1-711d-459e-9f7a-b7066b093a9b)
+![Orchestrion Scenario 2](https://github.com/jon94/learning-golang-orchestrion/assets/40360784/c4498456-8c8f-40df-811d-7b85a33da33c)
 
 ## See it in action
 1. Clone the repo
@@ -34,7 +34,7 @@ git clone https://github.com/jon94/orchestrion-golang-container.git
 ```
 docker compose up -d --force-recreate --no-deps --build
 ```
-5. Generate traffic by hitting curl -v http://localhost:5000/
+5. Generate traffic by hitting curl -v http://localhost:5000/apiRequest and curl -v http://localhost:5000/getErrorRequest
 6. After you are done
 ```
 docker compose down
@@ -42,4 +42,4 @@ docker compose down
 
 ## Credits
 - Sin Ta: For debugging the Dockerfile with me to make it work.
-- Sho Uchida: For bumping orchestrion for Golang Auto Instrumentation.
+- Sho Uchida: For bumping Orchestrion for Golang Auto Instrumentation.
