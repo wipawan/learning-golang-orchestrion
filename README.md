@@ -36,7 +36,13 @@ git clone https://github.com/jon94/learning-golang-orchestrion.git
 ```
 docker compose up -d --force-recreate --no-deps --build
 ```
-5. Generate traffic by hitting curl -v http://localhost:5000/apiRequest and curl -v http://localhost:5000/getErrorRequest
+5. Generate traffic by hitting
+```
+curl -v http://localhost:5000/apiRequest
+```
+```
+curl -v http://localhost:5000/getErrorRequest
+```
 6. After you are done, head to the Datadog APM Platform to see the Traces.
 ```
 docker compose down
