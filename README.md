@@ -38,7 +38,7 @@ docker compose up -d --force-recreate --no-deps --build
 ```
 5. Generate traffic by hitting
 ```
-curl -v http://localhost:5000/apiRequest
+curl -v http://localhost:5000/api
 ```
 ```
 curl -v http://localhost:5000/getErrorRequest
