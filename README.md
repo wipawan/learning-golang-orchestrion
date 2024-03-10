@@ -26,7 +26,7 @@
 ## See it in action
 1. Clone the repo
 ```
-git clone https://github.com/jon94/orchestrion-golang-container.git
+git clone https://github.com/jon94/learning-golang-orchestrion.git
 ```
 2. Replace the Datadog API Key in docker-compose.yaml
 3. Set ENV Variable DD_SITE if required (depending on your data centre with Datadog)
@@ -35,7 +35,7 @@ git clone https://github.com/jon94/orchestrion-golang-container.git
 docker compose up -d --force-recreate --no-deps --build
 ```
 5. Generate traffic by hitting curl -v http://localhost:5000/apiRequest and curl -v http://localhost:5000/getErrorRequest
-6. After you are done
+6. After you are done, head to the Datadog APM Platform to see the Traces.
 ```
 docker compose down
 ```
