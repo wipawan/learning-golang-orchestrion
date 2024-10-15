@@ -17,7 +17,7 @@ COPY go.mod go.sum ./
 COPY . .
 
 #orchestrion instrumentation
-RUN go install github.com/DataDog/orchestrion@v0.6.0
+RUN go install github.com/datadog/orchestrion@v0.6.0
 
 # Activate Orchestrion
 RUN $(go env GOPATH)/bin/orchestrion -w ./
