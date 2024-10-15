@@ -1,4 +1,4 @@
-module github.com/jon94/learning-golang-orchestrion
+module github.com/mmeeww/learning-golang-orchestrion
 
 go 1.18
 
